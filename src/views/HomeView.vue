@@ -1,5 +1,17 @@
 <script setup lang="ts">
 import Field from "@/components/InputField.vue";
+import { http } from "@/services/http";
+import { onMounted } from "vue";
+
+onMounted(async () => {
+  document.title = "Home";
+  try {
+    const result = await http.get("/ping");
+    console.log(result.data);
+  } catch (err) {
+    console.error(err);
+  }
+});
 </script>
 
 <template>
